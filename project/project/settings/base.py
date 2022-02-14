@@ -34,7 +34,9 @@ DJANGO_APPS = [
 # app locals 
 LOCAL_APPS = [
     'apps.users',
-    'apps.schema'
+    'apps.schema',
+    'apps.cards',
+    'apps.decks',
 ]
 
 # apps de terceros
