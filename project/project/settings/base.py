@@ -37,6 +37,7 @@ LOCAL_APPS = [
     'apps.schema',
     'apps.cards',
     'apps.decks',
+    'apps.ingredients',
 ]
 
 # apps de terceros

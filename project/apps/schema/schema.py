@@ -5,6 +5,9 @@ from apps.users.models import User as UserModel
 from apps.cards.models import Card as CardModel
 from apps.decks.models import Deck as DecksModel
 
+# Otros Object Types Django 
+import apps.ingredients.schema
+
 class User(DjangoObjectType):
   class Meta:
     model = UserModel
@@ -19,7 +22,10 @@ class Decks(DjangoObjectType):
   class Meta:
     model = DecksModel
 
-class Query(graphene.ObjectType):
+class Query(
+  apps.ingredients.schema.Query,
+  graphene.ObjectType
+):
   users = graphene.List(User)
   cards = graphene.List(Card)
   decks = graphene.List(Decks)
