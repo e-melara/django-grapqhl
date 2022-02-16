@@ -16,9 +16,6 @@ def get_secret(secret_name, secrets=secret):
         msg = "La variable %s no existe" % secret_name
         raise ImproperlyConfigured(msg)
 
-
-
-
 SECRET_KEY = get_secret('SECRET_KEY')
 
 # Aplications form django
@@ -35,8 +32,6 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     'apps.users',
     'apps.schema',
-    'apps.cards',
-    'apps.decks',
     'apps.ingredients',
 ]
 
@@ -56,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -103,5 +99,13 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 GRAPHENE = {
-    "SCHEMA": "apps.schema.schema.schema"
+    "SCHEMA": "apps.schema.schema.schema",
+    "MIDDLEWARE": [
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ],
 }
+
+AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]

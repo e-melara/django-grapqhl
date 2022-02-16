@@ -4,7 +4,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.name + ' - Category: ' + str(self.id)
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=100)
